@@ -8,65 +8,52 @@
 
     @include('errors.common')
 
-        <form action="{{ URL::route('job-listing-store') }}" method="POST" class="form-horizontal">
-        {{ csrf_field() }}
+        {!! Form::macro('styledInput', function($name, $description)
+        {
+            return '<div class="form-group">'.
+                Form::label($name, $description, array('class' => 'col-sm-3 control-label')).
+                '<div class="col-sm-6">'.
+                    Form::text($name, null, array('class' => 'form-control')).
+                '</div>
+            </div>';
+        }) !!}
+
+        @if( isset($jobListing) )
+            {{ Form::model($jobListing, ['route' => ['job-listing-edit-store', $jobListing], 'files' => true, 'class' => 'form-horizontal', 'method' => 'PATCH']) }}
+        @else
+            {{ Form::open(['url' => url()->current(), 'files' => true, 'class' => 'form-horizontal'] )}}
+        @endif
+
+            {!! Form::styledInput('company_name','Şirket İsmi') !!}
+
             <div class="form-group">
-                <label for="job-listing" class="col-sm-3 control-label">Şirket İsmi</label>
+                {{ Form::label('company_logo', 'Şirket Logosu', array('class' => 'col-sm-3 control-label')) }}
 
                 <div class="col-sm-6">
-                    <input type="text" name="company-name" id="job-listing-company" class="form-control">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="job-listing" class="col-sm-3 control-label">Şirket Logosu</label>
-
-                <div class="col-sm-6">
-                    <input type="file" name="company-logo" id="job-listing-company-logo" class="form-control">
+                    <input type="file" name="company_logo" id="job-listing-company-logo" class="form-control">
                     <p class="help-block">1024x1024 den küçük olmalıdır</p>
                 </div>
             </div>
 
+            {!! Form::styledInput('company_website','Şirket Web Adresi') !!}
+
+            {!! Form::styledInput('company_location','Şehir') !!}
+
+            {!! Form::styledInput('name','İlan Başlığı') !!}
+
             <div class="form-group">
-                <label for="job-listing" class="col-sm-3 control-label">Şirket Web Adresi</label>
+                {{ Form::label('category', 'Kategori', array('class' => 'col-sm-3 control-label')) }}
 
                 <div class="col-sm-6">
-                    <input type="text" name="company-url" id="job-listing-company-url" class="form-control">
+                    {{ Form::select('category', $categories, null, array('class' => 'form-control')) }}
                 </div>
             </div>
 
             <div class="form-group">
-                <label for="job-listing" class="col-sm-3 control-label">Şehir</label>
-
+                {{ Form::label('description', 'Pozisyon Detayları', array('class' => 'col-sm-3 control-label')) }}
                 <div class="col-sm-6">
-                    <input type="text" name="job-listing-location" id="job-listing-location" class="form-control">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="job-listing" class="col-sm-3 control-label">İlan Başlığı</label>
-
-                <div class="col-sm-6">
-                    <input type="text" name="job-listing-name" id="job-listing-name" class="form-control">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="job-listing" class="col-sm-3 control-label">Kategori</label>
-
-                <div class="col-sm-6">
-                    <select  name="category" id="job-listing-category" class="form-control">
-                        <option id="0">Diğer</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="job-listing" class="col-sm-3 control-label">Pozisyon Detayları</label>
-
-                <div class="col-sm-6">
-                    <textarea class="form-control" rows="5" name="job-listing-description"></textarea>
-                </div>
+                    {{ Form::textarea('description', null, array('class' => 'form-control')) }}
+                    </div>
             </div>
 
             <div class="form-group">
@@ -76,7 +63,7 @@
                     </button>
                 </div>
             </div>
-        </form>
+        {{ Form::close() }}
     </div>
 
 @endsection

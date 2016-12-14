@@ -2,6 +2,10 @@
 
 @section('content')
 
-    <a href="{{ URL::route('job-listing-form') }}">Yeni İlan Ekle</a>
+    {{dd($jobListings)}}
+
+<table class="table">
+
+</table>
 
 @endsection
