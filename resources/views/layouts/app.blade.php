@@ -20,7 +20,7 @@
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
-            <p class="navbar-text">Webrazzi Kariyer</p>
+            <p class="navbar-text"><a href="{{ route('job-listings-index') }}">Webrazzi Kariyer</a></p>
             <a href="{{ URL::route('job-listing-add-form') }}">
                 <button type="button" class="btn btn-default navbar-btn">İlan Ver</button>
             </a>
