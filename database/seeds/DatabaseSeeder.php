@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\JobCategory;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,5 +13,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(CategorySeeder::class);
         $this->command->info('Categories Created');
+        $this->call(UserSeeder::class);
+        $this->command->info('Admin User Created');
     }
 }

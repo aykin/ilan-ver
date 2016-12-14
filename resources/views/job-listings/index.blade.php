@@ -21,6 +21,9 @@
                     </td>
                 @endif
                 <td>
+                    {{ $jobListing->published_at }}
+                </td>
+                <td>
                     <strong><a href="{{ route('job-listing-view', ['jobListingId' => $jobListing->id] ) }}">{{ $jobListing->name }}</a></strong>,
                     {{ $jobListing->location }},
                     <strong>{{ $jobListing->company->name }}</strong>

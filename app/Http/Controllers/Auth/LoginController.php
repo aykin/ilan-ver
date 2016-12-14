@@ -36,17 +36,6 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        /*
-        $credentials = [
-            'email' => 'admin@webrazzi.com',
-            'name' => 'admin',
-            'password' => ''
-        ];
-
-        $credentials['password'] = Hash::make("parola");
-
-        $user = User::create($credentials);
-        dd("a");*/
         $this->middleware('guest', ['except' => 'logout']);
     }
 }

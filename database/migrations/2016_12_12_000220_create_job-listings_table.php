@@ -18,9 +18,11 @@ class CreateJobListingsTable extends Migration
             $table->string('name');
             $table->integer('company_id')->unsigned()->nullable();
             $table->integer('job_category_id')->unsigned()->nullable();
-            $table->string('location');
+            $table->string('location')->nullable();
             $table->text('description');
             $table->tinyInteger('status')->default(0);
+            $table->timestamp('published_at')->nullable();
+            $table->timestamp('removed_at')->nullable();
             $table->foreign('company_id')
                 ->references('id')->on('companies')
                 ->onDelete('cascade');
