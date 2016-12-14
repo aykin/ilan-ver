@@ -29,7 +29,12 @@ class JobListing extends Model
             static::addGlobalScope('status', function (Builder $builder) {
                 $builder->where('status', '=', self::STATUS_APPROVED);
             });
+        } else {
+            static::addGlobalScope('status', function (Builder $builder) {
+                $builder->where('status', '!=', self::STATUS_REMOVED);
+            });
         }
+
     }
 
     public function company()

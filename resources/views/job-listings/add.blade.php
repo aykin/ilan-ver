@@ -50,10 +50,11 @@
             </div>
 
             <div class="form-group">
+
                 {{ Form::label('description', 'Pozisyon Detayları', array('class' => 'col-sm-3 control-label')) }}
                 <div class="col-sm-6">
-                    {{ Form::textarea('description', null, array('class' => 'form-control')) }}
-                    </div>
+                    <textarea id="summernote" name="description">{{ $jobListing->description or '' }}</textarea>
+                </div>
             </div>
 
             <div class="form-group">
@@ -64,6 +65,30 @@
                 </div>
             </div>
         {{ Form::close() }}
+
+
     </div>
 
+@endsection
+
+@section('head')
+    <!-- include summernote css/js-->
+    <link href="/css/summernote.css" rel="stylesheet">
+    <script src="/js/summernote.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#summernote').summernote({
+                minHeight: 200,
+                maxHeight: 500,
+                toolbar: [
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['font', ['strikethrough', 'superscript', 'subscript']],
+                    ['fontsize', ['fontsize']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['height', ['height']]
+                ]
+            });
+        });
+    </script>
 @endsection

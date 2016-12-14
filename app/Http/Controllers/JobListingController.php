@@ -65,10 +65,10 @@ class JobListingController extends Controller
      * Create a new Job Listing.
      *
      * @param  Request $request
-     * @param int $jobListingId
+     * @param int $jobListingId|null
      * @return Response
      */
-    public function store(Request $request, $jobListingId)
+    public function store(Request $request, $jobListingId = null)
     {
         $this->validate($request, [
             'company_name' => 'required|max:255',
