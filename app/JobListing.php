@@ -90,4 +90,9 @@ class JobListing extends Model
         return $this->company->website;
     }
 
+    public function formCompanyLocationAttribute()
+    {
+        return $this->location;
+    }
+
 }

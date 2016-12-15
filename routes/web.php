@@ -24,7 +24,8 @@ Route::get('/ilan/{jobListingId}/duzenle', 'JobListingController@edit')->name('j
 Route::patch('/ilan/{jobListingId}/duzenle', 'JobListingController@store')->name('job-listing-edit-store')->middleware('auth');
 
 Route::get('/ilan/{jobListingId}/yayin', 'JobListingController@publish')->name('job-listing-publish');
-Route::delete('/ilan/{jobListing}', 'JobListingController@destroy')->name('job-listing-remove')->middleware('auth');
+//@todo: normalde delete metodu olması iyi olur.
+Route::get('/ilan/{jobListing}/delete','JobListingController@remove')->name('job-listing-remove')->middleware('auth');
 
 
 Route::get('/admin', 'AdminController@index')->middleware('auth');
