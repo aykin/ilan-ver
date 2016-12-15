@@ -83,7 +83,6 @@ class JobListingController extends Controller
         $this->validate($request, [
             'company_name' => 'required|max:255',
             'name' => 'required|max:255',
-            'company_location' => 'required|max:255',
             'description' => 'required',
         ]);
 
@@ -138,7 +137,7 @@ class JobListingController extends Controller
 
         $jobListing->save();
 
-        return redirect()->route('job-listing-view', ['jobListingId' => $jobListing->id]);
+        return back();
     }
 
     /**
@@ -154,7 +153,7 @@ class JobListingController extends Controller
 
         $jobListing->save();
 
-        return redirect()->route('job-listing-view', ['jobListingId' => $jobListing->id]);
+        return back();
     }
 }
 

@@ -60,7 +60,7 @@
             <div class="form-group">
                 <div class="col-sm-offset-3 col-sm-6">
                     <button type="submit" class="btn btn-default">
-                        <i class="fa fa-plus"></i> İlan Ekle
+                        <i class="fa fa-plus"></i> Gönder
                     </button>
                 </div>
             </div>

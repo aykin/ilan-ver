@@ -13,6 +13,10 @@
 
 Auth::routes();
 
+Route::get('/',function() {
+    return redirect(route('job-listings-index'));
+});
+
 Route::get('/ilanlar', 'JobListingController@index')->name('job-listings-index');
 Route::get('/ilanlar/bekleyen', 'JobListingController@indexPending')->name('job-listings-index-pending')->middleware('auth');
 Route::get('/ilanlar/arsiv', 'JobListingController@indexRemoved')->name('job-listings-index-removed')->middleware('auth');
@@ -24,7 +28,8 @@ Route::get('/ilan/{jobListingId}/duzenle', 'JobListingController@edit')->name('j
 Route::patch('/ilan/{jobListingId}/duzenle', 'JobListingController@store')->name('job-listing-edit-store')->middleware('auth');
 
 Route::get('/ilan/{jobListingId}/yayin', 'JobListingController@publish')->name('job-listing-publish');
-Route::delete('/ilan/{jobListing}', 'JobListingController@destroy')->name('job-listing-remove')->middleware('auth');
+//@todo: normalde delete metodu olması iyi olur.
+Route::get('/ilan/{jobListing}/delete','JobListingController@remove')->name('job-listing-remove')->middleware('auth');
 
 
 Route::get('/admin', 'AdminController@index')->middleware('auth');

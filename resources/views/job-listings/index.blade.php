@@ -14,8 +14,11 @@
                             </button>
                             <ul class="dropdown-menu">
                                 <li><a href="{{ route('job-listing-edit-form', ['jobListingId' => $jobListing->id] ) }}">Düzenle</a></li>
-                                <li><a href="#">Sil</a></li>
-                                <li><a href="#">Yayından Çek</a></li>
+                                @if ($jobListing->status == 1)
+                                    <li><a href="{{ route('job-listing-remove', ['jobListingId' => $jobListing->id] ) }}">Yayından Kaldır</a></li>
+                                @else
+                                    <li><a href="{{ route('job-listing-publish', ['jobListingId' => $jobListing->id] ) }}">Yayına Al</a></li>
+                                @endif
                             </ul>
                         </div>
                     </td>
