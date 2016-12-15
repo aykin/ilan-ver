@@ -34,7 +34,7 @@
         <li role="presentation" @if(Route::current()->getName() == 'job-listings-index-pending') class="active" @endif ><a href="{{ route('job-listings-index-pending') }}">Bekleyen İlanlar</a></li>
         <li role="presentation" @if(Route::current()->getName() == 'job-listings-index') class="active" @endif ><a href="{{ route('job-listings-index') }}">Yayında Olan İlanlar</a></li>
         <li role="presentation" @if(Route::current()->getName() == 'job-listings-index-removed') class="active" @endif ><a href="{{ route('job-listings-index-removed') }}">Yayından Kalkan İlanlar</a></li>
-        <li role="presentation" @if(Route::current()->getName() == 'admin-stats') class="active" @endif ><a href="#">İstatistikler</a></li>
+        <li role="presentation" @if(Route::current()->getName() == 'admin-stats') class="active" @endif ><a href="{{ route('admin-stats') }}">İstatistikler</a></li>
     </ul>
 @endif
 
