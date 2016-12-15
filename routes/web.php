@@ -33,3 +33,4 @@ Route::get('/ilan/{jobListing}/delete','JobListingController@remove')->name('job
 
 
 Route::get('/admin', 'AdminController@index')->middleware('auth');
+Route::get('/admin/stats', 'AdminController@stats')->name('admin-stats')->middleware('auth');
