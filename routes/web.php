@@ -13,6 +13,10 @@
 
 Auth::routes();
 
+Route::get('/',function() {
+    return redirect(route('job-listings-index'));
+});
+
 Route::get('/ilanlar', 'JobListingController@index')->name('job-listings-index');
 Route::get('/ilanlar/bekleyen', 'JobListingController@indexPending')->name('job-listings-index-pending')->middleware('auth');
 Route::get('/ilanlar/arsiv', 'JobListingController@indexRemoved')->name('job-listings-index-removed')->middleware('auth');
