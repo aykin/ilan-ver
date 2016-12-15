@@ -29,10 +29,6 @@ class JobListing extends Model
             static::addGlobalScope('status', function (Builder $builder) {
                 $builder->where('status', '=', self::STATUS_APPROVED);
             });
-        } else {
-            static::addGlobalScope('status', function (Builder $builder) {
-                $builder->where('status', '!=', self::STATUS_REMOVED);
-            });
         }
 
     }
@@ -63,6 +59,15 @@ class JobListing extends Model
     public function scopeRemoved($query)
     {
         return $query->where('status', self::STATUS_REMOVED);
+    }
+
+    /**
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopePending($query)
+    {
+        return $query->where('status', self::STATUS_PASSIVE);
     }
 
     public function formCompanyNameAttribute()

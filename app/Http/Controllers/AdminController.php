@@ -13,7 +13,6 @@ class AdminController extends Controller
         return view('job-listings.index');
     }
 
-
     /**
      * Create a new Job Listing.
      *

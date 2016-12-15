@@ -27,7 +27,17 @@ class JobListingController extends Controller
     }
 
     public function index() {
-        $jobListings = JobListing::orderBy('created_at', 'desc')->get();
+        $jobListings = JobListing::published()->orderBy('created_at', 'desc')->get();
+        return view('job-listings.index', ['categories' => $this->categories, 'jobListings' => $jobListings]);
+    }
+
+    public function indexPending() {
+        $jobListings = JobListing::pending()->orderBy('created_at', 'desc')->get();
+        return view('job-listings.index', ['categories' => $this->categories, 'jobListings' => $jobListings]);
+    }
+
+    public function indexRemoved() {
+        $jobListings = JobListing::removed()->orderBy('created_at', 'desc')->get();
         return view('job-listings.index', ['categories' => $this->categories, 'jobListings' => $jobListings]);
     }
 
@@ -72,7 +82,6 @@ class JobListingController extends Controller
     {
         $this->validate($request, [
             'company_name' => 'required|max:255',
-            'company_website' => 'required|max:255',
             'name' => 'required|max:255',
             'company_location' => 'required|max:255',
             'description' => 'required',
@@ -114,6 +123,38 @@ class JobListingController extends Controller
             return view('job-listings.message');
         }
 
+    }
+
+    /**
+     * @param Request $request
+     * @param integer $jobListingId
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function publish(Request $request, $jobListingId)
+    {
+        $jobListing = JobListing::findOrFail($jobListingId);
+        $jobListing->status = 1;
+        $jobListing->published_at = new \DateTime();
+
+        $jobListing->save();
+
+        return redirect()->route('job-listing-view', ['jobListingId' => $jobListing->id]);
+    }
+
+    /**
+     * @param Request $request
+     * @param integer $jobListingId
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function remove(Request $request, $jobListingId)
+    {
+        $jobListing = JobListing::findOrFail($jobListingId);
+        $jobListing->status = 2;
+        $jobListing->removed_at = new \DateTime();
+
+        $jobListing->save();
+
+        return redirect()->route('job-listing-view', ['jobListingId' => $jobListing->id]);
     }
 }
 
